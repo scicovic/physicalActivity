@@ -1,0 +1,19 @@
+﻿CREATE USER IF NOT EXISTS user  IDENTIFIED BY 'pass';
+
+
+
+DROP DATABASE IF EXISTS jwd;
+
+
+CREATE DATABASE jwd DEFAULT CHARACTER SET utf8;
+
+
+
+USE jwd;
+
+
+GRANT ALL ON jwd.* TO 'user'@'%';
+
+
+
+FLUSH PRIVILEGES;

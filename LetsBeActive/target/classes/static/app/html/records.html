@@ -1,0 +1,76 @@
+<div ng-controller="recordsCtrl">
+	<h1>Zavr&#353;ene aktivnosti</h1>
+	
+	<form>
+		<div class="form-group">
+			<label for="rtime">Datum i vreme</label>
+			<input class="form-control" id="rtime" ng-model="newRecord.time" />
+		</div>
+		<div class="form-group">
+			<label for="rduration">Trajanje</label>
+			<input class="form-control" id="rduration" ng-model="newRecord.duration"/>
+		</div>
+		<div class="form-group">
+			<label for="rintensity">Intenzitet</label>
+			<input class="form-control" id="rintensity" ng-model="newRecord.intensity"/>
+		</div>
+		<div class="form-group">
+			<label for="ractivity">Aktivnost</label>
+			<select class="form-control" id="ractivity" ng-model="newRecord.activityId">
+				<option ng-repeat="a in activities" value="{{a.id}}">{{a.name}}</option>
+			</select>
+		</div>
+	
+		<button class="btn btn-primary" ng-click="doAdd()">Dodaj</button>
+	</form>
+	
+	<form>
+		<div class="form-group">
+			<label for="sactivity">Ime aktivnosti</label>
+			<input ng-model="searchParams.activityName" class="form-control" id="sactivity"/>
+		</div>
+		<div class="form-group">
+			<label for="smindur">Minimalno vreme trajanja</label>
+			<input ng-model="searchParams.minDuration" class="form-control" id="smindur" />
+		</div>
+		<div class="form-group">
+			<label for="sintensity">Intenzitet</label>
+			<input ng-model="searchParams.intensity" class="form-control" id="sintensity" />
+		</div>
+		<button ng-click="doSearch()" class="btn btn-primary">Pretraga</button>
+	</form>
+	
+	
+	<div class="btn-group">
+		<button ng-disabled="pageNum == 0" ng-click="changePage(-1)" class="btn btn-info">Previous</button>
+		<button ng-disabled="pageNum == totalPages-1" ng-click="changePage(1)" class="btn btn-info">Next</button>
+	</div>
+	<br/>
+	<br/>
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th>Vreme</th>
+				<th>Trajanje</th>
+				<th>Intenzitet</th>
+				<th>Aktivnost</th>
+				
+				<th> </th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="r in records">
+				<td>{{r.time}}</td>
+				<td>{{r.duration}}</td>
+				<td>{{r.intensity}}</td>
+				<td>{{r.activityName}}</td>
+				
+				<td>
+					<button class="btn btn-warning" ng-click="goToEdit(r.id)">
+						<i class="fa fa-magic" aria-hidden="true"></i>
+					</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

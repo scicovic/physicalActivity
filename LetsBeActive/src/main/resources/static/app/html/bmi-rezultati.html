@@ -1,0 +1,33 @@
+<div ng-controller="calc">
+
+	<div class="btn-group">
+		<button ng-disabled="pageNum == 0" ng-click="changePage(-1)" class="btn btn-info">Previous</button>
+		<button ng-disabled="pageNum == totalPages-1" ng-click="changePage(1)" class="btn btn-info">Next</button>
+	</div>
+	<br/>
+	<br/>
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th>Datum merenja</th>
+				<th>IBM</th>
+				<th>Te&#382;ina</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="r in records">
+				<td>{{r.date}}</td>
+				<td>{{r.bmi}}</td>
+				<td>{{r.note}}</td>
+				
+				
+				<td>
+					<button class="btn btn-danger" ng-click="doDelete(r.id)">
+						<i class="fa fa-trash" aria-hidden="true"></i>
+					</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
